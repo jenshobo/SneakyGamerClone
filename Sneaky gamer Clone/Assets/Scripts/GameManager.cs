@@ -13,12 +13,31 @@ public class GameManager : MonoBehaviour
 
     public int score;
     public float enery;
+    public float eneryDelay = 0.2f;
 
+    float time;
     int playerStatus = 0; // 0 = idle, 1 = hide, 2 = playing mini game
     bool toggle = true;
+    bool hiding;
 
     void Update()
     {
+        // UI managment
+        enerySlider.value = enery;
+
+        if (time <= Time.time && hiding)
+        {
+            time = Time.time + eneryDelay;
+            enery -= .01f;
+        }
+
+        // event manager
+        if (enery <= 0 || enemyManager.isWatching && !hiding)
+        {
+            Debug.Log("game over");
+            // end the game with score and what not
+        }
+
         //buttons
         if (Input.GetKeyDown("left shift"))
         {
@@ -36,7 +55,7 @@ public class GameManager : MonoBehaviour
         }
 
         // calling functions
-        switch (playerStatus)
+        switch (playerStatus) // statusText not needed later, just for debugging
         {
             case 0:
                 statusText.text = "Player Status: ilde"; StartMiniGame(); break;
@@ -49,17 +68,17 @@ public class GameManager : MonoBehaviour
 
     void StartMiniGame()
     {
-
+        hiding = false;
     }
 
     void Hide()
     {
-        // enery needs to go down here
+        hiding = true;
     }
 
     void Ilde()
     {
-
+        hiding = false;
     }
 
     public void AddScore(int i) // call this at the end of a minigame

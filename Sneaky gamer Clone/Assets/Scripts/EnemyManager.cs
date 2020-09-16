@@ -44,6 +44,7 @@ public class EnemyManager : MonoBehaviour
     void StartMove()
     {
         // enemy has multiple positions to come from do this with an (int)random.range
+        // get something like an animation (with function call) to make a sound here and then later iswatching = true
         statusText.text = "Enemy Status: Watching";
         isWatching = true;
     }

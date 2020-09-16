@@ -587,7 +587,8 @@ MonoBehaviour:
   statusText: {fileID: 1932244285}
   enerySlider: {fileID: 955881211}
   score: 0
-  enery: 0
+  enery: 1
+  eneryDelay: 0.2
 --- !u!1 &1122434305
 GameObject:
   m_ObjectHideFlags: 0
