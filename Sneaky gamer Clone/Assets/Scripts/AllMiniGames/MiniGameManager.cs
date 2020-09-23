@@ -8,9 +8,13 @@ public class MiniGameManager : MonoBehaviour
     [Header("minigame type")]
     public bool timerWin;
     public bool shoot;
+    public bool light;
+    public bool hit;
 
     [Header("variables")]
     public GameObject enemyPrefab;
+    public TiggerObject trigger;
+    public CollisionObject ball;
     public Slider timerBar;
 
     public Vector2 minAndMaxPosition;
@@ -39,9 +43,28 @@ public class MiniGameManager : MonoBehaviour
         if (paused)
             return;
 
+        // special checks for some minigames
         if (shoot)
         {
             if (enemies[0] == null && enemies[1] == null)
+            {
+                Debug.Log("minigame is done, you won");
+                // game is done, return with x amount points
+            }
+        }
+
+        if (light)
+        {
+            if (!trigger.playerInSphere)
+            {
+                Debug.Log("minigame is over, you lost");
+                // game is done, return with 0 points
+            }
+        }
+
+        if (hit)
+        {
+            if (ball.win)
             {
                 Debug.Log("minigame is done, you won");
                 // game is done, return with x amount points
@@ -61,7 +84,6 @@ public class MiniGameManager : MonoBehaviour
                 Debug.Log("minigame is over, you lost");
                 // game is done, return with 0 points
             }
-
         }
 
         if (time <= Time.time)
