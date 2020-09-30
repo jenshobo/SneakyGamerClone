@@ -56,9 +56,4 @@ public class BallBehaviour : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(ballStartPosition, .2f);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // mini game is lost
-    }
 }

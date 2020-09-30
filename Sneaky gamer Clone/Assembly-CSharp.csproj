@@ -62,15 +62,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AllMiniGames\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\AllMiniGames\GameManager.cs" />
     <Compile Include="Assets\Scripts\AllMiniGames\MiniGameManager.cs" />
     <Compile Include="Assets\Scripts\AllMiniGames\PlayerBehaviour.cs" />
-    <Compile Include="Assets\Scripts\EnemyManager.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Hit!\BallBehaviour.cs" />
     <Compile Include="Assets\Scripts\Hit!\CollisionObject.cs" />
     <Compile Include="Assets\Scripts\Light!\LightBehaviour.cs" />
     <Compile Include="Assets\Scripts\Light!\TiggerObject.cs" />
     <Compile Include="Assets\Scripts\Shoot!\EnemyBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Shoot!\SpawnEnemies.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Student/Desktop/Jens's work/GitHub/SneakyGamerClone/Sneaky gamer Clone/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

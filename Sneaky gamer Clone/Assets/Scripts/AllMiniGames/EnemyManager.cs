@@ -5,18 +5,26 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
+    public bool idle;
+
     public Text statusText;
 
     public float maxWait;
     public float minWait;
     public float waitPerMove;
 
-    public bool isWatching; // is for GameManager
+    static float startTime = 0;
+    static float endTime = 0;
+    static bool stop = false;
+    static bool isWatching;
 
-    float startTime = 0;
-    float endTime = 0;
-
-    bool stop = false;
+    private void Start()
+    {
+        if (isWatching)
+            statusText.text = "Enemy Status: Watching";
+        else
+            statusText.text = "Enemy Status: Away";
+    }
 
     private void Update()
     {
@@ -35,7 +43,7 @@ public class EnemyManager : MonoBehaviour
             endTime = Mathf.Infinity;
             stop = true;
 
-            Debug.Log(random);
+            //Debug.Log(random);
 
             EndMove();
         }

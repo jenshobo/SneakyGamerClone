@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CollisionObject : MonoBehaviour
 {
+    public MiniGameManager manager;
+
     public Animation batSwing;
-    public bool win = false;
 
     int hitCount = 0;
 
@@ -15,7 +16,7 @@ public class CollisionObject : MonoBehaviour
             batSwing.Play();
 
         if (hitCount >= 2)
-            win = true;
+            manager.RequestWin(true);
 
         Debug.Log(hitCount);
     }

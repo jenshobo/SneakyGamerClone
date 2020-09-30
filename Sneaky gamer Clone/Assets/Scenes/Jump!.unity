@@ -540,6 +540,7 @@ GameObject:
   - component: {fileID: 1139665240}
   - component: {fileID: 1139665239}
   - component: {fileID: 1139665242}
+  - component: {fileID: 1139665243}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -625,15 +626,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerWin: 1
-  shoot: 0
-  light: 0
-  hit: 0
-  enemyPrefab: {fileID: 0}
+  shootMiniGame: 0
+  lightMiniGame: 0
+  hitMiniGame: 0
+  Manager: {fileID: 1139665243}
   trigger: {fileID: 0}
   ball: {fileID: 0}
+  shootEnemies: {fileID: 0}
   timerBar: {fileID: 1902910342}
-  minAndMaxPosition: {x: 0, y: 0}
   paused: 0
+--- !u!114 &1139665243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139665238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2c8412805ea6f419e05808f2653f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle: 1
+  enemyManager: {fileID: 0}
+  scoreText: {fileID: 0}
+  statusText: {fileID: 0}
+  livesText: {fileID: 0}
+  enerySlider: {fileID: 0}
+  enery: 0
+  eneryDelay: 0.2
 --- !u!1 &1417924415
 GameObject:
   m_ObjectHideFlags: 0

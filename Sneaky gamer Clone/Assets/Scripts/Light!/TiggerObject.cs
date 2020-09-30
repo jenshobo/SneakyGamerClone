@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class TiggerObject : MonoBehaviour
 {
-    public bool playerInSphere = true;
+    public MiniGameManager manager;
+    public GameObject lightObject;
 
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "Player")
         {
-            playerInSphere = false;
+            Debug.Log("player left light");
+            lightObject.active = false;
+            manager.RequestWin(false);
         }
     }
 }

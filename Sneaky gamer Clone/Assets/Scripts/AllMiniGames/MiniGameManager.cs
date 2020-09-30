@@ -7,82 +7,37 @@ public class MiniGameManager : MonoBehaviour
 {
     [Header("minigame type")]
     public bool timerWin;
-    public bool shoot;
-    public bool light;
-    public bool hit;
+    public bool lightMiniGame;
 
     [Header("variables")]
-    public GameObject enemyPrefab;
-    public TiggerObject trigger;
-    public CollisionObject ball;
+    public GameManager manager;
+    public SpawnEnemies shootEnemies;
     public Slider timerBar;
-
-    public Vector2 minAndMaxPosition;
 
     public bool paused = false;
 
+    bool win;
+
     float timerEnery = 1;
     float time;
-    GameObject[] enemies = new GameObject[2];
-
-    void Start()
-    {
-        if (shoot)
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                int random = Random.Range(Mathf.RoundToInt(minAndMaxPosition.x), Mathf.RoundToInt(minAndMaxPosition.y));
-                enemyPrefab.transform.position = new Vector3(random, (i + 1.5f) * 1.5f);
-                enemies[i] = Instantiate(enemyPrefab);
-            }
-        }
-    }
 
     void Update()
     {
         if (paused)
             return;
 
-        // special checks for some minigames
-        if (shoot)
-        {
-            if (enemies[0] == null && enemies[1] == null)
-            {
-                Debug.Log("minigame is done, you won");
-                // game is done, return with x amount points
-            }
-        }
-
-        if (light)
-        {
-            if (!trigger.playerInSphere)
-            {
-                Debug.Log("minigame is over, you lost");
-                // game is done, return with 0 points
-            }
-        }
-
-        if (hit)
-        {
-            if (ball.win)
-            {
-                Debug.Log("minigame is done, you won");
-                // game is done, return with x amount points
-            }
-        }
-
         // all mini games
         if (timerEnery <= 0)
         {
             if (timerWin)
             {
-                Debug.Log("minigame is over, you won");
-                // game is done, return with x amount points
+                Debug.Log("Minigame is won");
+                manager.AddScore(300);
             }
             else
             {
-                Debug.Log("minigame is over, you lost");
-                // game is done, return with 0 points
+                Debug.Log("Minigame is lost");
+                manager.AddScore(0);
             }
         }
 
@@ -92,5 +47,10 @@ public class MiniGameManager : MonoBehaviour
             timerEnery -= .025f;
             timerBar.value = timerEnery;
         }
+    }
+
+    public void RequestWin(bool i)
+    {
+        timerWin = i;
     }
 }
