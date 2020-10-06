@@ -23,6 +23,11 @@ public class MiniGameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey("left shift"))
+            paused = true;
+        else
+            paused = false;
+
         if (paused)
             return;
 

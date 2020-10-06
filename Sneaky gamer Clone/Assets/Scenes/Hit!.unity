@@ -819,12 +819,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idle: 1
-  enemyManager: {fileID: 0}
+  enemyManager: {fileID: 1211341327}
   scoreText: {fileID: 0}
   statusText: {fileID: 0}
   livesText: {fileID: 0}
   enerySlider: {fileID: 0}
-  enery: 0
+  enery: 1
   eneryDelay: 0.2
 --- !u!114 &1211341327
 MonoBehaviour:
@@ -843,6 +843,7 @@ MonoBehaviour:
   maxWait: 25
   minWait: 10
   waitPerMove: 5
+  watching: 0
 --- !u!1 &1262100907
 GameObject:
   m_ObjectHideFlags: 0

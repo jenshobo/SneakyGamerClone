@@ -17,6 +17,7 @@ public class EnemyManager : MonoBehaviour
     static float endTime = 0;
     static bool stop = false;
     static bool isWatching;
+    public bool watching;
 
     private void Start()
     {
@@ -28,6 +29,8 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
+        watching = isWatching;
+
         // getting random time to start StartMove and getting a time (waitPerMove after start) to start EndMove
         if (startTime <= Time.time && stop)
         {
@@ -51,7 +54,6 @@ public class EnemyManager : MonoBehaviour
 
     void StartMove()
     {
-        // enemy has multiple positions to come from do this with an (int)random.range
         // get something like an animation (with function call) to make a sound here and then later iswatching = true
         statusText.text = "Enemy Status: Watching";
         isWatching = true;

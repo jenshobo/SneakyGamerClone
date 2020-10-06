@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public bool paused;
-
     public float speed;
 
     public bool twoD;
 
+    bool paused;
+
     void Update()
     {
+        if (Input.GetKey("left shift"))
+            paused = true;
+        else
+            paused = false;
+
         if (paused)
             return;
 

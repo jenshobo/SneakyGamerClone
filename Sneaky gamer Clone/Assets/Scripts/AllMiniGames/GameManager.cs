@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
     public Text livesText;
     public Slider enerySlider;
 
-    public float enery;
     public float eneryDelay = 0.2f;
 
+    static float enery;
     static int lives = 3;
     static int score;
 
@@ -25,11 +25,27 @@ public class GameManager : MonoBehaviour
     int playerStatus = 0; // 0 = idle, 1 = hide, 2 = playing mini game
     bool toggle = true;
     bool hiding;
+    bool paused;
 
     void Update()
     {
+        if (Input.GetKey("left shift"))
+            paused = true;
+        else
+            paused = false;
+
+        if (enery <= 0 || enemyManager.watching && !hiding || lives <= 0)
+        {
+            Debug.Log("game over");
+            // end the game
+        }
+
         if (idle)
+        {
+            hiding = paused;
             return;
+        }
+
 
         // UI managment
         enerySlider.value = enery;
@@ -41,13 +57,6 @@ public class GameManager : MonoBehaviour
             time = Time.time + eneryDelay;
             enery -= .01f;
         }
-
-        // event manager
-        //if (enery <= 0 || enemyManager.isWatching && !hiding || lives <= 0)
-        //{
-        //    Debug.Log("game over");
-        //    // end the game with score and what not
-        //}
 
         //buttons
         if (Input.GetKeyDown("left shift"))
@@ -83,7 +92,7 @@ public class GameManager : MonoBehaviour
         playerStatus = 0;
         toggle = true;
 
-        SceneManager.LoadScene(Random.Range(1, 4));
+        SceneManager.LoadScene(Random.Range(1, 6));
     }
 
     void Hide()

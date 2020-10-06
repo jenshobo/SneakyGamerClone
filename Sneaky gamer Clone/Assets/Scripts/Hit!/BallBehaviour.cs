@@ -15,6 +15,8 @@ public class BallBehaviour : MonoBehaviour
     bool toggleOne = true;
     bool toggleTwo = true;
 
+    bool paused;
+
     void Start()
     {
         ballPrefab.transform.position = ballStartPosition;
@@ -40,6 +42,14 @@ public class BallBehaviour : MonoBehaviour
             toggleTwo = false;
             balls[1] = Instantiate(ballPrefab);
         }
+
+        if (Input.GetKey("left shift"))
+            paused = true;
+        else
+            paused = false;
+
+        if (paused)
+            return;
 
         // move ball objects (idk why i do it here, just fun i gues)
         foreach (GameObject ball in balls)

@@ -12,7 +12,7 @@ public class CollisionObject : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
             batSwing.Play();
 
         if (hitCount >= 2)

@@ -9,9 +9,17 @@ public class EnemyBehaviour : MonoBehaviour
 
     bool toggle = true;
 
+    bool paused;
+
     void Update()
     {
-        // for the micro game Shoot!
+        if (Input.GetKey("left shift"))
+            paused = true;
+        else
+            paused = false;
+
+        if (paused)
+            return;
 
         if (toggle)
             transform.Translate(Vector3.left * Time.deltaTime * speed);

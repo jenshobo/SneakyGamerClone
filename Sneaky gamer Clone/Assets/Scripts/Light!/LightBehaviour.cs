@@ -9,6 +9,8 @@ public class LightBehaviour : MonoBehaviour
     public Vector3[] movePositions = new Vector3[4];
     public Vector3 movingToPosition;
 
+    bool paused;
+
     void Start()
     {
         GetRandomPoint();
@@ -16,6 +18,14 @@ public class LightBehaviour : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey("left shift"))
+            paused = true;
+        else
+            paused = false;
+
+        if (paused)
+            return;
+
         if (Vector3.Distance(transform.position, movingToPosition) <= 1)
             GetRandomPoint();
 

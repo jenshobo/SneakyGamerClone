@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jump!.unity
     guid: 2761715508696114e998630a161e5886
+  - enabled: 1
+    path: Assets/Scenes/Park!.unity
+    guid: 75d8d98fa5101134cae3c2945dca4028
   m_configObjects: {}
