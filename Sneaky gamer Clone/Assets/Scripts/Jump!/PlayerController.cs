@@ -24,7 +24,13 @@ public class PlayerController : MonoBehaviour
             paused = false;
 
         if (paused)
+        {
+            thisRigidbody.isKinematic = true;
             return;
+        }
+        else
+            thisRigidbody.isKinematic = false;
+
 
         if (toggle)
             return;

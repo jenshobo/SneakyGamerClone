@@ -19,6 +19,8 @@ public class EnemyManager : MonoBehaviour
     static float endTime = 0;
     static bool stop = false;
     static bool isWatching;
+    static bool animationPlaying;
+
     public bool watching;
 
     private void Start()
@@ -27,10 +29,14 @@ public class EnemyManager : MonoBehaviour
             statusText.text = "Enemy Status: Watching";
         else
             statusText.text = "Enemy Status: Away";
+
+        if (animationPlaying)
+            enemyAnimation.Play();
     }
 
     private void Update()
     {
+        animationPlaying = enemyAnimation.isPlaying;
         watching = isWatching;
 
         // getting random time to start StartMove and getting a time (waitPerMove after start) to start EndMove
