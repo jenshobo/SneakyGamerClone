@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool idle;
 
     public EnemyManager enemyManager;
+    public Animation animation;
 
     public Text scoreText;
     public Text statusText;
@@ -17,14 +18,13 @@ public class GameManager : MonoBehaviour
 
     public float eneryDelay = 0.2f;
 
-    static float enery;
+    static float enery = 1;
     static int lives = 3;
     static int score;
 
     float time;
     int playerStatus = 0; // 0 = idle, 1 = hide, 2 = playing mini game
     bool toggle = true;
-    bool hiding;
     bool paused;
 
     void Update()
@@ -34,29 +34,26 @@ public class GameManager : MonoBehaviour
         else
             paused = false;
 
-        if (enery <= 0 || enemyManager.watching && !hiding || lives <= 0)
+        if (enery <= 0 || enemyManager.watching && !paused || lives <= 0)
         {
             Debug.Log("game over");
             // end the game
         }
 
-        if (idle)
+        if (time <= Time.time && paused)
         {
-            hiding = paused;
-            return;
+            time = Time.time + eneryDelay;
+            enery -= .01f;
         }
+
+        if (idle)
+            return;
 
 
         // UI managment
         enerySlider.value = enery;
         scoreText.text = "Score: " + score;
         livesText.text = "Lives: " + lives;
-
-        if (time <= Time.time && hiding)
-        {
-            time = Time.time + eneryDelay;
-            enery -= .01f;
-        }
 
         //buttons
         if (Input.GetKeyDown("left shift"))
@@ -75,7 +72,7 @@ public class GameManager : MonoBehaviour
         }
 
         // calling functions
-        switch (playerStatus) // statusText not needed later, just for debugging
+        switch (playerStatus) // statusText not needed later, just for debugging. Hide and Ilde not needed anymore
         {
             case 0:
                 statusText.text = "Player Status: ilde"; Ilde(); break;
@@ -88,7 +85,10 @@ public class GameManager : MonoBehaviour
 
     void StartMiniGame()
     {
-        hiding = false;
+        if (animation.isPlaying)
+            return;
+        
+        paused = false;
         playerStatus = 0;
         toggle = true;
 
@@ -97,12 +97,12 @@ public class GameManager : MonoBehaviour
 
     void Hide()
     {
-        hiding = true;
+        paused = true;
     }
 
     void Ilde()
     {
-        hiding = false;
+        paused = false;
     }
 
     public void AddScore(int i) // call this at the end of a minigame

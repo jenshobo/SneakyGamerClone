@@ -7,6 +7,8 @@ public class EnemyManager : MonoBehaviour
 {
     public bool idle;
 
+    public AudioSource enemySoundSource;
+    public Animation enemyAnimation;
     public Text statusText;
 
     public float maxWait;
@@ -37,7 +39,7 @@ public class EnemyManager : MonoBehaviour
             endTime = Time.time + waitPerMove;
             stop = false;
 
-            StartMove();
+            enemyAnimation.Play();
         }
         else if (endTime <= Time.time)
         {
@@ -46,22 +48,23 @@ public class EnemyManager : MonoBehaviour
             endTime = Mathf.Infinity;
             stop = true;
 
-            //Debug.Log(random);
-
             EndMove();
         }
     }
 
     void StartMove()
     {
-        // get something like an animation (with function call) to make a sound here and then later iswatching = true
+        enemySoundSource.Play();
+    }
+
+    void SetActive()
+    {
         statusText.text = "Enemy Status: Watching";
         isWatching = true;
     }
 
     void EndMove()
     {
-        // just remove the enemy for now
         statusText.text = "Enemy Status: Away";
         isWatching = false;
     }
