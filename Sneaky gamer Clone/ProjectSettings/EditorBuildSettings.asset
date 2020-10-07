@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Shoot!.unity
+    path: Assets/Scenes/useless/Shoot!.unity
     guid: e1763b979b3560641b5f32077573a848
   - enabled: 1
     path: Assets/Scenes/Light!.unity
@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Hit!.unity
     guid: cec713bb908a33147bb9633b498ffc33
   - enabled: 1
-    path: Assets/Scenes/Jump!.unity
+    path: Assets/Scenes/useless/Jump!.unity
     guid: 2761715508696114e998630a161e5886
   - enabled: 1
     path: Assets/Scenes/Park!.unity

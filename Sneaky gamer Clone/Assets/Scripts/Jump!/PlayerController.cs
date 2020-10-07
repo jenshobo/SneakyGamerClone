@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     bool paused;
 
-    void Start()
+    void OnEnable()
     {
         thisRigidbody = this.gameObject.GetComponent<Rigidbody>();
     }
@@ -40,5 +40,10 @@ public class PlayerController : MonoBehaviour
             thisRigidbody.AddForce(Vector3.up * jumpForce);
             toggle = true;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        toggle = false;
     }
 }

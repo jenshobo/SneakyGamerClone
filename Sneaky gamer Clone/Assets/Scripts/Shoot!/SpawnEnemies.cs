@@ -10,7 +10,7 @@ public class SpawnEnemies : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject[] enemies = new GameObject[2];
 
-    void Start()
+    void OnEnable()
     {
         for (int i = 0; i < 2; i++)
         {
@@ -23,6 +23,20 @@ public class SpawnEnemies : MonoBehaviour
     void Update()
     {
         if (enemies[0] == null && enemies[1] == null)
+        {
             manager.RequestWin(true);
+        }
+    }
+
+    public void CleanUp()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy == null)
+                return;
+
+            EnemyBehaviour e = enemy.transform.GetComponent<EnemyBehaviour>();
+            e.DestroyThisObject();
+        }
     }
 }

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CarBehaviour : MonoBehaviour
 {
+    public Vector3 startPosition;
+
     public MiniGameManager manager;
 
     float speed;
 
     bool paused;
 
-    void Start()
+    void OnEnable()
     {
         speed = Random.Range(7.5f, 15f);
     }
@@ -26,6 +28,11 @@ public class CarBehaviour : MonoBehaviour
             return;
 
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
+
+    public void CleanUp()
+    {
+        transform.position = startPosition;
     }
 
     void OnCollisionEnter(Collision collision)

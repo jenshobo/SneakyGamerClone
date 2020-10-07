@@ -7,12 +7,15 @@ public class MiniGameManager : MonoBehaviour
 {
     [Header("minigame type")]
     public bool timerWin;
-    public bool lightMiniGame;
 
     [Header("variables")]
+    public GameObject cameraObject;
+    public SpawnEnemies spawnEnemies;
+    public CarBehaviour carBehaviour;
     public GameManager manager;
-    public SpawnEnemies shootEnemies;
     public Slider timerBar;
+
+    public Vector3 defualtCameraPosition;
 
     public bool paused = false;
 
@@ -44,6 +47,8 @@ public class MiniGameManager : MonoBehaviour
                 Debug.Log("Minigame is lost");
                 manager.AddScore(0);
             }
+
+            RequestCleanup();
         }
 
         if (time <= Time.time)
@@ -52,6 +57,21 @@ public class MiniGameManager : MonoBehaviour
             timerEnery -= .025f;
             timerBar.value = timerEnery;
         }
+    }
+
+    public void SetUpMiniGame(Slider slider, bool timeWin)
+    {
+        timerEnery = 1;
+        timerBar = slider;
+        timerWin = timeWin;
+    }
+
+    void RequestCleanup()
+    {
+        cameraObject.transform.position = defualtCameraPosition;
+        timerEnery = 1;
+        spawnEnemies.CleanUp();
+        carBehaviour.CleanUp();
     }
 
     public void RequestWin(bool i)
