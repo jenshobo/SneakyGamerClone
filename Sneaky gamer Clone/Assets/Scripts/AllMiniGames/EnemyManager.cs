@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
-    public bool idle;
-
     public AudioSource enemySoundSource;
     public Animation enemyAnimation;
     public Text statusText;

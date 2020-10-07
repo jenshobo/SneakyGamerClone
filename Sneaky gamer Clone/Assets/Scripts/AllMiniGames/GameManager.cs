@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public EnemyManager enemyManager;
 
+    public Text gameOverText;
     public Text scoreText;
     public Text livesText;
     public Slider enerySlider;
@@ -21,10 +22,15 @@ public class GameManager : MonoBehaviour
     static int score;
 
     float time;
+    bool gameOver = false;
+
     public bool paused;
 
     void Update()
     {
+        if (gameOver)
+            return;
+
         if (Input.GetKey("left shift"))
             paused = true;
         else
@@ -33,6 +39,8 @@ public class GameManager : MonoBehaviour
         if (enery <= 0 || enemyManager.watching && !paused || lives <= 0)
         {
             Debug.Log("game over");
+            gameOverText.text = "Game Over";
+            gameOver = true;
             // end the game
         }
 
@@ -59,15 +67,15 @@ public class GameManager : MonoBehaviour
     {
         paused = false;
 
-        SceneManager.LoadScene(Random.Range(1, 6));
+        SceneManager.LoadScene(Random.Range(1, 7));
     }
 
-    public void AddScore(int i) // call this at the end of a minigame
+    public void AddScore(int i)
     {
         score += i;
-        if (i != 0)
+        if (i != 0 && enery <= .8f)
             enery += .2f;
-        else
+        if (i == 0)
             lives--;
 
         SceneManager.LoadScene(0);

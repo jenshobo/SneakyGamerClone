@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Park!.unity
     guid: 75d8d98fa5101134cae3c2945dca4028
+  - enabled: 1
+    path: Assets/Scenes/Grab!.unity
+    guid: d0ff2a5eb3c74f94da8f2fc124d69924
   m_configObjects: {}
