@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     public GameObject main;
     public GameObject shoot;
     public GameObject jump;
+    public GameObject hit;
 
     public Slider shootSlider;
     public Slider jumpSlider;
+    public Slider hitSlider;
 
     public MiniGameManager miniGameManager;
     public EnemyManager enemyManager;
@@ -77,19 +79,18 @@ public class GameManager : MonoBehaviour
         paused = false;
         playingMiniGame = true;
 
-        // testingputting everything into 1 scene
         main.SetActive(false);
 
-        int random = Random.Range(1, 3);
+        int random = 3;/*Random.Range(1, 4);*/
 
         switch (random)
         {
-            case 1: shoot.SetActive(true); miniGameManager.SetUpMiniGame(shootSlider, false); break;
+            case 1: shoot.SetActive(true); miniGameManager.SetUpMiniGame(shootSlider, false, new Vector3(0,1,-10)); break;
 
-            case 2: jump.SetActive(true); miniGameManager.SetUpMiniGame(jumpSlider, true); break;
+            case 2: jump.SetActive(true); miniGameManager.SetUpMiniGame(jumpSlider, true, new Vector3(0, 1, -10)); break;
+
+            case 3: hit.SetActive(true); miniGameManager.SetUpMiniGame(hitSlider, false, new Vector3(0, 3, -13)); break;
         }
-
-        //SceneManager.LoadScene(Random.Range(1, 7));
     }
 
     public void AddScore(int i)
@@ -102,11 +103,9 @@ public class GameManager : MonoBehaviour
         if (i == 0)
             lives--;
 
-        // testingputting everything into 1 scene
         shoot.SetActive(false);
         jump.SetActive(false);
+        hit.SetActive(false);
         main.SetActive(true);
-
-        //SceneManager.LoadScene(0);
     }
 }

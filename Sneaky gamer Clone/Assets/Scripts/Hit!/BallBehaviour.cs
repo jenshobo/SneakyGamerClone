@@ -10,14 +10,14 @@ public class BallBehaviour : MonoBehaviour
     public float ballSpeed;
 
     float[] times = new float[2];
-     public GameObject[] balls = new GameObject[2];
+    public GameObject[] balls = new GameObject[2];
 
     bool toggleOne = true;
     bool toggleTwo = true;
 
     bool paused;
 
-    void Start()
+    void OnEnable()
     {
         ballPrefab.transform.position = ballStartPosition;
 
@@ -58,6 +58,18 @@ public class BallBehaviour : MonoBehaviour
                 return;
 
             ball.transform.Translate(-Vector3.forward * Time.deltaTime * ballSpeed);
+        }
+    }
+
+    public void CleanUp()
+    {
+        foreach (GameObject i in balls)
+        {
+            if (i != null)
+            {
+                BallDestroy e = i.transform.GetComponent<BallDestroy>();
+                e.DestroyThisObject();
+            }
         }
     }
 

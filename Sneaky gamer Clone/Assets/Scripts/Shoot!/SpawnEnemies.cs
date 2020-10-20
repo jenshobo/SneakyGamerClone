@@ -32,11 +32,11 @@ public class SpawnEnemies : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            if (enemy == null)
-                return;
-
-            EnemyBehaviour e = enemy.transform.GetComponent<EnemyBehaviour>();
-            e.DestroyThisObject();
+            if (enemy != null)
+            {
+                EnemyBehaviour e = enemy.transform.GetComponent<EnemyBehaviour>();
+                e.DestroyThisObject();
+            }
         }
     }
 }
