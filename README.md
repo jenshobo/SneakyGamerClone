@@ -1,3 +1,4 @@
-# project is not yet done, will be removing this text if it is.
-# until then changes will be made to the code
-# read the post on my portfolio from this project for more information
+# the project currently only has 5 mini games (all in random order)
+# i dont have plans to make more than that
+# most of the code was writen with in mind that all minigames get their own scene
+# however this was around the end changed, so all the code is made with the scene plan in mind
