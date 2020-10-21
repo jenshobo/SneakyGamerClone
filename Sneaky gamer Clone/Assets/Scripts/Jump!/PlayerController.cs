@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Vector3 startPosition;
+
     public float jumpForce;
 
     Rigidbody thisRigidbody;
@@ -14,6 +16,7 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         thisRigidbody = this.gameObject.GetComponent<Rigidbody>();
+        gameObject.transform.position = startPosition;
     }
 
     void Update()
