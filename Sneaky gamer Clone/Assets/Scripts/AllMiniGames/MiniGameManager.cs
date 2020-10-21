@@ -13,6 +13,7 @@ public class MiniGameManager : MonoBehaviour
     public SpawnEnemies spawnEnemies;
     public BallBehaviour ballBehaviour;
     public CarBehaviour carBehaviour;
+    public TiggerObject lightTriggerObject;
     public GameManager manager;
     public Slider timerBar;
 
@@ -60,12 +61,11 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
-    public void SetUpMiniGame(Slider slider, bool timeWin, Vector3 cameraPosition)
+    public void SetUpMiniGame(Slider slider, bool timeWin)
     {
         timerEnery = 1;
         timerBar = slider;
         timerWin = timeWin;
-        cameraObject.transform.position = cameraPosition;
     }
 
     void RequestCleanup()
@@ -75,6 +75,7 @@ public class MiniGameManager : MonoBehaviour
         spawnEnemies.CleanUp();
         carBehaviour.CleanUp();
         ballBehaviour.CleanUp();
+        lightTriggerObject.CleanUp();
     }
 
     public void RequestWin(bool i)

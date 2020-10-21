@@ -8,7 +8,7 @@ public class CollisionObject : MonoBehaviour
 
     public Animation batSwing;
 
-    int hitCount = 0;
+    public int hitCount = 0;
 
     void Update()
     {

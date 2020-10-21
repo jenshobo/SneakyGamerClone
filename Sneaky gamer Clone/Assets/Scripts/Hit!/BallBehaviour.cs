@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BallBehaviour : MonoBehaviour
 {
+    public CollisionObject bat;
+
     public Vector3 ballStartPosition;
     public GameObject ballPrefab;
 
@@ -63,6 +65,11 @@ public class BallBehaviour : MonoBehaviour
 
     public void CleanUp()
     {
+        toggleOne = true;
+        toggleTwo = true;
+
+        bat.hitCount = 0;
+
         foreach (GameObject i in balls)
         {
             if (i != null)

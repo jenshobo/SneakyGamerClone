@@ -9,11 +9,14 @@ public class LightBehaviour : MonoBehaviour
     public Vector3[] movePositions = new Vector3[4];
     public Vector3 movingToPosition;
 
+    public GameObject mainLight;
+
     bool paused;
 
-    void Start()
+    void OnEnable()
     {
         GetRandomPoint();
+        mainLight.SetActive(false);
     }
 
     void Update()

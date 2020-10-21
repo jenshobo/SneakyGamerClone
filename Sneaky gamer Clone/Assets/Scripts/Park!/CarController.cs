@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    public GameObject startPosition;
     public float speed;
     public MiniGameManager manager;
 
     bool broken = false;
     bool paused;
+
+    void OnEnable()
+    {
+        gameObject.transform.position = startPosition.transform.position; gameObject.transform.rotation = startPosition.transform.rotation;
+        broken = false;
+    }
 
     void Update()
     {

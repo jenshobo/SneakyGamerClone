@@ -6,6 +6,7 @@ public class TiggerObject : MonoBehaviour
 {
     public MiniGameManager manager;
     public GameObject lightObject;
+    public GameObject playerObject;
 
     private void OnTriggerExit(Collider other)
     {
@@ -15,5 +16,11 @@ public class TiggerObject : MonoBehaviour
             lightObject.active = false;
             manager.RequestWin(false);
         }
+    }
+
+    public void CleanUp()
+    {
+        lightObject.SetActive(true);
+        playerObject.transform.position = gameObject.transform.position;
     }
 }

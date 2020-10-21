@@ -8,18 +8,35 @@ public class GameManager : MonoBehaviour
 {
     public bool idle;
 
+    [Header("rest objects")]
+    public GameObject mainLight;
+
+    [Header("camera position objects")]
+    public GameObject mainCameraPosition;
+    public GameObject hitCameraPosition;
+    public GameObject parkCameraPosition;
+    public GameObject lightCameraPosition;
+
+    [Header("minigame parent objects")]
     public GameObject main;
     public GameObject shoot;
     public GameObject jump;
     public GameObject hit;
+    public GameObject park;
+    public GameObject _light;
 
+    [Header("sliders (could be a single one but no)")]
     public Slider shootSlider;
     public Slider jumpSlider;
     public Slider hitSlider;
+    public Slider parkSlider;
+    public Slider lightSlider;
 
+    [Header("manager scripts")]
     public MiniGameManager miniGameManager;
     public EnemyManager enemyManager;
 
+    [Header("rest variables")]
     public Text gameOverText;
     public Text scoreText;
     public Text livesText;
@@ -81,15 +98,35 @@ public class GameManager : MonoBehaviour
 
         main.SetActive(false);
 
-        int random = 3;/*Random.Range(1, 4);*/
+        int random = Random.Range(1, 6);
 
         switch (random)
         {
-            case 1: shoot.SetActive(true); miniGameManager.SetUpMiniGame(shootSlider, false, new Vector3(0,1,-10)); break;
-
-            case 2: jump.SetActive(true); miniGameManager.SetUpMiniGame(jumpSlider, true, new Vector3(0, 1, -10)); break;
-
-            case 3: hit.SetActive(true); miniGameManager.SetUpMiniGame(hitSlider, false, new Vector3(0, 3, -13)); break;
+            case 1:
+                shoot.SetActive(true);
+                miniGameManager.SetUpMiniGame(shootSlider, false);
+                gameObject.transform.position = mainCameraPosition.transform.position; gameObject.transform.rotation = main.transform.rotation;
+                break;
+            case 2:
+                jump.SetActive(true);
+                miniGameManager.SetUpMiniGame(jumpSlider, true);
+                gameObject.transform.position = mainCameraPosition.transform.position; gameObject.transform.rotation = main.transform.rotation;
+                break;
+            case 3:
+                hit.SetActive(true);
+                miniGameManager.SetUpMiniGame(hitSlider, false);
+                gameObject.transform.position = hitCameraPosition.transform.position; gameObject.transform.rotation = hitCameraPosition.transform.rotation;
+                break;
+            case 4:
+                park.SetActive(true);
+                miniGameManager.SetUpMiniGame(parkSlider, false);
+                gameObject.transform.position = parkCameraPosition.transform.position; gameObject.transform.rotation = parkCameraPosition.transform.rotation;
+                break;
+            case 5:
+                _light.SetActive(true);
+                miniGameManager.SetUpMiniGame(lightSlider, true);
+                gameObject.transform.position = lightCameraPosition.transform.position; gameObject.transform.rotation = lightCameraPosition.transform.rotation;
+                break;
         }
     }
 
@@ -106,6 +143,10 @@ public class GameManager : MonoBehaviour
         shoot.SetActive(false);
         jump.SetActive(false);
         hit.SetActive(false);
+        park.SetActive(false);
+        _light.SetActive(false);
+        mainLight.SetActive(true);
         main.SetActive(true);
+        gameObject.transform.position = mainCameraPosition.transform.position; gameObject.transform.rotation = main.transform.rotation;
     }
 }
